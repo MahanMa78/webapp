@@ -61,3 +61,21 @@ def post_delete_view(request , pk):
         return redirect('home')
     
     return render(request , 'posts/post_delete.html' , {'post' : post} )
+
+
+def post_edit_view(request , pk):
+    post = Post.objects.get(id = pk)    
+    form = PostEditForm(instance=post)
+    
+    if request.method == "POST":
+        form = PostEditForm(request.POST , instance=post)
+        if form.is_valid():
+            form.save()
+            messages.success(request , "Post Updated!")
+            return redirect('home')
+    
+    context = {
+        'post' : post,
+        'form' : form,
+    }
+    return render(request , 'posts/post_edit.html' , context)
