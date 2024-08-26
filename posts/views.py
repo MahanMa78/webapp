@@ -46,6 +46,8 @@ def post_create_view(request):
             
             
             post.save()
+            form.save_m2m() #bayad hatman in ro bezarim ta betone on ManyToMany haro save kone.
+            
             return redirect('home')
             
     return render(request , 'posts/post_create.html' , {'form' : form})

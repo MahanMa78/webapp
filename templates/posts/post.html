@@ -14,8 +14,9 @@
         </a>
         <p class="text-5xl mb-10 px-4 font1">{{ post.body }}</p>
         <div class="flex items-center gap-2 text-sm mb-5 flex-wrap">
-            <a href="" class="bg-gray-200 rounded-full px-3 py-1 hover:bg-gray-800 hover:text-white">Animals</a>
-            <a href="" class="bg-gray-200 rounded-full px-3 py-1 hover:bg-gray-800 hover:text-white">Black & White</a>
+            {% for tag in post.tags.all %} {% comment %} chon ma az manytomanyfield estefade kardim bayad intori address bedim  {% endcomment %}
+                <a href="" class="bg-gray-200 rounded-full px-3 py-1 hover:bg-gray-800 hover:text-white">{{ tag }}</a>
+            {% endfor %}
         </div>
         <div class="flex items-center justify-between text-sm px-2">
             <a class="font-bold hover:underline" href="{% url "post" post.id %}">

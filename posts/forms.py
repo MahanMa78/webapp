@@ -5,23 +5,27 @@ from .models import *
 class PostCreateForm(ModelForm):
     class Meta:
         model = Post
-        fields = ['url', 'image' , 'body']
+        fields = ['url', 'image' , 'body' , 'tags']
         label ={
             'body' : 'Caption' , #be jay verbose_name ke dar dakhel Class model tarif mikardim,in kar ro ham mishe kard
+            'tags' : "Category",
         }
         widgets = { #in baraye inke dakhel template on jaygah 'body' ro tanzim konim
             'body' : forms.Textarea(attrs={ 'rows':3 , 'placeholder' : 'Add a caption ...' , 'class' : 'font1 text-4xl'}),
             'url' : forms.Textarea(attrs={'placeholder' : 'Add URL ...' }),
+            'tags': forms.CheckboxSelectMultiple(),
         }
         
 
 class PostEditForm(ModelForm):
     class Meta:
         model = Post
-        fields = ['body',]
+        fields = ['title' , 'body' , 'tags']
         labels = {
             'body' : '',
+            'tags' : "Category",
         }
         widgets ={
             'body' : forms.Textarea(attrs={ 'rows':3 ,'class' : 'font1 text-4xl'}),
+            'tags': forms.CheckboxSelectMultiple(),
         }
