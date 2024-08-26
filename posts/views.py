@@ -8,9 +8,19 @@ from django.contrib import messages
 def home_view(request , tag=None ):
     if tag:
         posts = Post.objects.filter(tags__slug = tag)
+        tag = get_object_or_404(Tag , slug = tag )
     else:
         posts = Post.objects.all()
-    return render(request,'posts/home.html' , {'posts' : posts})
+        
+    categories = Tag.objects.all()
+    
+    context ={
+        'posts' : posts ,
+        'categories' : categories,
+        'tag' : tag , 
+    }
+    
+    return render(request,'posts/home.html' , context )
 
 
 #in code pain ghalat nist ama bekhater osole DRY dorost nist pas baraye hamin be home_view on ro merge mikonim
