@@ -5,15 +5,18 @@ from bs4 import BeautifulSoup
 import requests
 from django.contrib import messages
 
-def home_view(request):
-    posts = Post.objects.all()
+def home_view(request , tag=None ):
+    if tag:
+        posts = Post.objects.filter(tags__slug = tag)
+    else:
+        posts = Post.objects.all()
     return render(request,'posts/home.html' , {'posts' : posts})
 
 
-
-def category_view(request , tag):
-    posts = Post.objects.filter(tags__slug = tag)
-    return render(request,'posts/home.html' , {'posts' : posts})
+#in code pain ghalat nist ama bekhater osole DRY dorost nist pas baraye hamin be home_view on ro merge mikonim
+# def category_view(request , tag):
+#     posts = Post.objects.filter(tags__slug = tag)
+#     return render(request,'posts/home.html' , {'posts' : posts})
 
 
 
