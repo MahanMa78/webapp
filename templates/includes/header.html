@@ -1,3 +1,4 @@
+{% load static %}
 <header x-data="{ mobilenavOpen: false }" class="md:flex items-center justify-between [&>*]:px-8 bg-gray-800 h-20 text-white sticky top-0 z-40">
     <div class="flex items-center justify-between h-20">
         <logo>
@@ -23,7 +24,11 @@
                 <li><a href="{% url "post-create" %}">Create Post</a></li>
                 <li x-data="{ dropdownOpen: false }" class="relative">
                     <a @click="dropdownOpen = !dropdownOpen" @click.away="dropdownOpen = false" class="cursor-pointer select-none">
-                        <img class="h-8 w-8 rounded-full object-cover" src="{{ user.profile.avatar}}"/> {% comment %} chon aval be on van user hast pas ebteda ba user mishnase va bad ba profile  {% endcomment %}
+                        {% if user.profile.avatar %}
+                            <img class="h-8 w-8 rounded-full object-cover" src="{{ user.profile.avatar}}"/> {% comment %} chon aval be on van user hast pas ebteda ba user mishnase va bad ba profile  {% endcomment %}
+                        {% else %}
+                            <img class="h-8 w-8 rounded-full object-cover" src="{% static 'images/avatar_default.svg' %}"/>
+                        {% endif %}
                         {{ user.profile.name }}
                         <img x-bind:class="dropdownOpen && 'rotate-180 duration-300'" class="w-4" src="https://img.icons8.com/small/32/777777/expand-arrow.png"/>
                     </a>
