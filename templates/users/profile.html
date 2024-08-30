@@ -8,16 +8,24 @@
     <div class="w-full md:w-[36rem] lg:w-[50rem]">
         <div class="card p-6">
             <div class="text-center flex flex-col items-center">
-                <img class="w-36 h-36 rounded-full object-cover mb-4" src="{{ profile.image.url }}" />
+                <img class="w-36 h-36 rounded-full object-cover mb-4" src="{{ profile.avatar }}" />
                 <div class="text-center max-w-md">
-                    <h1>{{ profile.realname }}</h1>
+                    <h1>{{ profile.name }}</h1>
                     <div class="text-gray-400 mb-2 -mt-3">@{{ profile.user.username }}</div>
                     <div class="flex items-center justify-center mx-auto">
                         <img class="object-cover h-6 mr-1 opacity-60" src="https://img.icons8.com/material-outlined/50/000000/marker.png"> 
-                        {{ profile.location }}
+                        {% if profile.location %}
+                            {{ profile.location }}
+                        {% else %}
+                            Planet Earth
+                        {% endif %}
                     </div>
                     <div class="my-8">
-                        {{ profile.bio }}
+                        {% if profile.bio %}
+                            {{ profile.bio }}
+                        {% else %}
+                            Professional procrastionator
+                        {% endif %}
                     </div> 
                     
                 </div>

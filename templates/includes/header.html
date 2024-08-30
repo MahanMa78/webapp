@@ -23,8 +23,8 @@
                 <li><a href="{% url "post-create" %}">Create Post</a></li>
                 <li x-data="{ dropdownOpen: false }" class="relative">
                     <a @click="dropdownOpen = !dropdownOpen" @click.away="dropdownOpen = false" class="cursor-pointer select-none">
-                        <img class="h-8 w-8 rounded-full object-cover" src="{{ user.profile.image.url }}"/> {% comment %} chon aval be on van user hast pas ebteda ba user mishnase va bad ba profile  {% endcomment %}
-                        {{ user.username }}
+                        <img class="h-8 w-8 rounded-full object-cover" src="{{ user.profile.avatar}}"/> {% comment %} chon aval be on van user hast pas ebteda ba user mishnase va bad ba profile  {% endcomment %}
+                        {{ user.profile.name }}
                         <img x-bind:class="dropdownOpen && 'rotate-180 duration-300'" class="w-4" src="https://img.icons8.com/small/32/777777/expand-arrow.png"/>
                     </a>
                     <div x-show="dropdownOpen" x-cloak class="absolute right-0 bg-white text-black shadow rounded-lg w-40 p-2 z-20"
