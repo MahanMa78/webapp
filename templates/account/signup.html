@@ -23,7 +23,8 @@
                 {% csrf_token %}
                 {% element fields form=form unlabeled=True %}
                 {% endelement %}
-                {{ redirect_field }}
+                {% comment %} {{ redirect_field }} {% endcomment %}
+                <input type="hidden" name="{{ redirect_field_name }}" value="{% url "profile-onboarding" %}">
             {% endslot %}
             {% slot actions %}
                 {% element button tags="prominent,signup" type="submit" %}
