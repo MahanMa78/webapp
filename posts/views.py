@@ -163,3 +163,15 @@ def comment_delete_view(request , pk):
         return redirect('post' , post.parent_post.id) #post dovomi baraye inke moshakhas kone id post chie ke baad az taghirat behesh bargarde
     
     return render(request , 'posts/comment_delete.html' , {'comment' : post} )
+
+
+@login_required
+def reply_delete_view(request , pk):
+    reply = get_object_or_404(Reply , id = pk , author = request.user)
+    
+    if request.method == 'POST':
+        reply.delete()
+        messages.success(request , 'Reply deleted!')
+        return redirect('post' , reply.parent_comment.parent_post.id) 
+    
+    return render(request , 'posts/reply_delete.html' , {'reply' : reply} )
