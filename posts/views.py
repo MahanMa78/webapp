@@ -109,4 +109,28 @@ def post_edit_view(request , pk):
 
 def post_page_view(request , pk):
     post = get_object_or_404(Post , id = pk)
-    return render(request , "posts/post_page.html" , {'post' : post})
+    
+    commentform = CommentCreateForm()
+    
+    context = {
+        'post' : post,
+        'commentform' : commentform,
+    }
+    
+    return render(request , "posts/post_page.html" ,context)
+
+
+
+@login_required
+def comment_sent(request , pk):
+    post = get_object_or_404(Post , id = pk)
+    
+    if request.method == 'POST':
+        form = CommentCreateForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.author = request.user
+            comment.parent_post = post
+            comment.save()
+            
+    return redirect('post' , post.id)
