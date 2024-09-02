@@ -34,7 +34,9 @@
                 1
             </div>
             <a href="">Like</a>
-            <a href="">Delete</a>
+            {% if user.is_authenticated and comment.author == user %}
+                <a href="{% url "comment-delete" comment.id %}">Delete</a>
+            {% endif %}
         </div>
 
         <div x-show="repliesOpen" x-cloak class="basis-full mt-3 pl-8 grid grid-cols-1">
