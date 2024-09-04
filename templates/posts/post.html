@@ -30,10 +30,10 @@
             <a class="font-bold hover:underline" href="{% url "post" post.id %}">
                 {% if post.comments.count > 1 %}
                     Comments
-                    <span class="font-light text-gray-500 ml-1">{{ post.comments.count }}</span>
+                    <span id="commentscount-{{ post.id }}" class="font-light text-gray-500 ml-1">{{ post.comments.count }}</span>
                 {% elif post.comments.count == 1 %}
                     Comment
-                    <span class="font-light text-gray-500 ml-1">{{ post.comments.count }}</span>
+                    <span  class="font-light text-gray-500 ml-1">{{ post.comments.count }}</span>
                 {% else %}
                     {% if user.is_authenticated %}
                     Add Comment
