@@ -136,7 +136,7 @@ def comment_sent(request , pk):
             comment.parent_post = post
             comment.save()
             
-    return redirect('post' , post.id)
+    return render(request , 'posts/comment.html' , {"comment" : comment})
 
 
 @login_required

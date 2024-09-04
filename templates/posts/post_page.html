@@ -6,10 +6,14 @@
 {% include "posts/post.html" %}
 
 <div class="card !pb-0 -mt-3">
-    <form method="POST" action="{% url "comment-sent" post.id %}" class="flex items-center p-4" autocomplete="off">
+    <form class="flex items-center p-4" autocomplete="off"
+          hx-post="{% url "comment-sent" post.id %}" 
+          hx-target="#tab-contents" 
+          hx-swap="afterbegin"
+          hx-on="htmx:afterRequest: this.reset()">
         {% csrf_token %}
         {{ commentform }}
-        <button @click="open = false" class="block ml-2" type="submit">Submit</button>
+        <button @click="open = false" class="block ml-2" type="submit" >Submit</button>
     </form>
 </div>
 
