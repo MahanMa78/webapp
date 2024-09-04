@@ -31,6 +31,7 @@ urlpatterns = [
     path('post/<pk>/' , post_page_view , name='post'),
     path('post/like/<pk>/' , like_post , name='like-post'), # <pk> vasat bashe ya akhar farghi nmikone
     path('comment/like/<pk>/' , like_comment , name='like-comment'),
+    path('reply/like/<pk>/' , like_reply , name='like-reply'),
     # path('category/<tag>/' , category_view , name='category'),
     path('category/<tag>/' , home_view , name='category'),
     path('profile/' , profile_view , name='profile'),
